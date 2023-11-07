@@ -3,38 +3,29 @@ import type {NextPage} from 'next';
 import React from 'react'
 import CatCard from '../components/cards/cat/CatCard';
 import {mockCatCardProps} from '../components/cards/cat/CatCard.mocks';
-import {Header} from "../stories/Header";
+import {NextPageWithLayout} from './page';
 
-const Home: NextPage = () => {
+import PrimaryLayout from '@/components/layouts/primary/PrimaryLayout';
+import SidebarLayout from '@/components/layouts/sidebar/SidebarLayout';
+
+const Home: NextPageWithLayout = () => {
   return (
-    <div>
-      <main>
-        <h3>
-          Welcome to <a href="<https://nextjs.org>">Next.js!</a>
-        </h3>
+    <CatCard {...mockCatCardProps.base} />
+  );
+};
+export default Home;
 
-        <div style={{display: 'flex'}}>
-          <CatCard {...mockCatCardProps.base} />
-          <CatCard {...mockCatCardProps.base} />
-          <CatCard {...mockCatCardProps.base} />
-        </div>
-      </main>
 
-      <footer>
-        <a
-          href="<https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app>"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span>
-          </span>
-        </a>
-      </footer>
-    </div>
+Home.getLayout = (page) => {
+  return (
+    <PrimaryLayout>
+      <SidebarLayout />
+      {page}
+    </PrimaryLayout>
   );
 };
 
-export default Home;
 
+// 在 Next.js 项目中，pages 目录下的每个文件都对应一个路由。pages / index.tsx 文件对应的是根路由（即 /）。
+// 在 index.tsx 文件中，你定义了一个名为 Home 的组件，这个组件使用了 NextPageWithLayout 类型，这意味着它可以有一个 getLayout 函数来指定布局。
 
