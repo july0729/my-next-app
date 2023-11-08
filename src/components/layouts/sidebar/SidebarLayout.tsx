@@ -13,8 +13,8 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
       <Link href="/about">
         About
       </Link>
-      <Link href="/contact">
-        Contact
+      <Link href="/home">
+        home
       </Link>
     </nav>
   );
